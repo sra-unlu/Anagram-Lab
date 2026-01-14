@@ -7,9 +7,22 @@ import java.util.Scanner;
 
 public class AnagramFinder {
 
-  public static List<String> getAnagrams(String word, LookupList dict){
-    // TODO
-    return new ArrayList<String>();
+  public static List<String> getAnagrams(String word, LookupList dict) {
+    List<String> anagrams = new ArrayList<>();
+    permutation("", word, dict, anagrams);
+    return anagrams;
+  }
+
+  private static void permutation(String prefix, String remaining, LookupList dict, List<String> anagrams) {
+    if (remaining.length() == 0) {
+      if (dict.contains(prefix) && !anagrams.contains(prefix)) {
+        anagrams.add(prefix);
+      }
+      return;
+    }
+    for (int i = 0; i < remaining.length(); i++) {
+      permutation(prefix + remaining.charAt(i), remaining.substring(0, i) + remaining.substring(i + 1), dict, anagrams);
+    }
   }
 
   public static void main(String[] args) throws FileNotFoundException {
