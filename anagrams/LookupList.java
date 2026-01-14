@@ -36,11 +36,19 @@ public class LookupList {
   private ArrayList<String> mergeSort(ArrayList<String> arr) {
     if (arr.size() < 2)
       return arr;
-    ArrayList<String> a = (ArrayList<String>) arr.subList(0, arr.size() / 2);
-    ArrayList<String> b = (ArrayList<String>) arr.subList(arr.size() / 2, arr.size());
+    ArrayList<String> a = copy(arr, 0, arr.size() / 2);
+    ArrayList<String> b = copy(arr, arr.size() / 2, arr.size());
     a = mergeSort(a);
     b = mergeSort(b);
     return mergeLists(a, b);
+  }
+
+  private ArrayList<String> copy(ArrayList<String> arr, int begining, int end) {
+    ArrayList<String> ar = new ArrayList<>();
+    for (int i = begining; i < end; i++) {
+      ar.add(arr.get(i));
+    }
+    return ar;
   }
 
   private static ArrayList<String> mergeLists(ArrayList<String> a, ArrayList<String> b) {
@@ -50,15 +58,15 @@ public class LookupList {
     int i = 0;
     while (a.size() > ai && b.size() > bi && merged.size() > i) {
       if (a.get(ai).compareTo(b.get(bi)) > 0) {
-        merged.set(i, b.get(bi));
+        merged.add(b.get(bi));
         bi++;
       } else if (a.get(ai).compareTo(b.get(bi)) < 0) {
-        merged.set(i, a.get(ai));
+        merged.add(a.get(ai));
         ai++;
       } else {
-        merged.set(i, a.get(ai));
+        merged.add(a.get(ai));
         i++;
-        merged.set(i, b.get(bi));
+        merged.add(b.get(bi));
         ai++;
         bi++;
       }
@@ -66,12 +74,12 @@ public class LookupList {
     }
     if (a.size() > ai) {
       for (int j = ai; j < a.size(); j++) {
-        merged.set(i, a.get(j));
+        merged.add(a.get(j));
         i++;
       }
     } else if (b.size() > bi) {
       for (int j = bi; j < b.size(); j++) {
-        merged.set(i, b.get(j));
+        merged.add(b.get(j));
         i++;
       }
     }
