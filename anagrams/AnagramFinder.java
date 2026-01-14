@@ -17,11 +17,17 @@ public class AnagramFinder {
     if (remaining.length() == 0) {
       if (dict.contains(prefix) && !anagrams.contains(prefix)) {
         anagrams.add(prefix);
+        System.out.println(prefix);
       }
       return;
     }
     for (int i = 0; i < remaining.length(); i++) {
-      permutation(prefix + remaining.charAt(i), remaining.substring(0, i) + remaining.substring(i + 1), dict, anagrams);
+      String a = prefix + remaining.charAt(i);
+      System.out.println(a);
+      String b = remaining.substring(i + 1);
+      // {took out remaining.substring(0, i) + } from begining of b
+      System.out.println(b);
+      permutation(a, b, dict, anagrams);
     }
   }
 
@@ -49,11 +55,11 @@ public class AnagramFinder {
       System.out.printf("Time: %.4f seconds.\n\n", (System.nanoTime() - start) / 1000000000);
 
       System.out.print("Enter another word to find anagrams >>> ");
-      word = input.nextLine().toUpperCase();;
+      word = input.nextLine().toUpperCase();
+      ;
     }
     System.out.println("All done!");
     input.close();
   }
-
 
 }

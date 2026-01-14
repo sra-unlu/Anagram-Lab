@@ -28,30 +28,29 @@ public class LookupListTester {
 
     System.out.println("List is correctly ordered? " + verifyOrdered(dict));
 
-    System.out.print("Print entire list? (y/n) >>> ");
-    if (input.nextLine().toLowerCase().contains("y"))
-      dict.print(); // This could take a while...
+    // System.out.print("Print entire list? (y/n) >>> ");
+    // if (input.nextLine().toLowerCase().contains("y"))
+    // dict.print(); // This could take a while...
 
     // Do word lookups.
-    // System.out.print("Search for a word (enter blank to stop) >>> ");
-    // String word = input.nextLine().toUpperCase();
-    // while(!word.equals("")){
-    // System.out.printf("Searching for \"%s\"...\n", word);
-    // start = System.nanoTime();
-    // if(dict.contains(word)) {
-    // System.out.printf("Dictionary has the word \"%s\" at position %d.\n", word,
-    // dict.indexOf(word));
-    // if(!dict.get(dict.indexOf(word)).equals(word)) // verify correct index
-    // System.out.print("ERROR - incorrect position!");
-    // }
-    // else
-    // System.out.printf("Dictionary does NOT contain the word \"%s\".\n", word);
-    // System.out.printf("Time: %.4f seconds.\n\n",
-    // (System.nanoTime()-start)/1000000000);
+    System.out.print("Search for a word (enter blank to stop) >>> ");
+    String word = input.nextLine().toUpperCase();
+    while (!word.equals("")) {
+      System.out.printf("Searching for \"%s\"...\n", word);
+      start = System.nanoTime();
+      if (dict.contains(word)) {
+        System.out.printf("Dictionary has the word \"%s\" at position %d.\n", word,
+            dict.indexOf(word));
+        if (!dict.get(dict.indexOf(word)).equals(word)) // verify correct index
+          System.out.print("ERROR - incorrect position!");
+      } else
+        System.out.printf("Dictionary does NOT contain the word \"%s\".\n", word);
+      System.out.printf("Time: %.4f seconds.\n\n",
+          (System.nanoTime() - start) / 1000000000);
 
-    // System.out.print("Search for another word >>> ");
-    // word = input.nextLine().toUpperCase();
-    // }
+      System.out.print("Search for another word >>> ");
+      word = input.nextLine().toUpperCase();
+    }
 
     System.out.println("All done!");
     input.close();
