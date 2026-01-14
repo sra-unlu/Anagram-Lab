@@ -34,8 +34,8 @@ public class AnagramFinder {
     for (int i = 0; i < remaining.length(); i++) {
       String a = prefix + remaining.charAt(i);
       System.out.println(a);
-      String b = remaining.substring(i + 1);
-      // {took out remaining.substring(0, i) + } from begining of b
+      String b = remaining.substring(0, i) + remaining.substring(i + 1);
+      // {} from begining of b
       System.out.println(b);
       permutation(a, b, dict, anagrams);
     }
