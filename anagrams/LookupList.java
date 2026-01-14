@@ -94,16 +94,30 @@ public class LookupList {
     return wordlist.get(index);
   }
 
-  public int indexOf(String word) {
-    return wordlist.indexOf(word);
+  // aisha
+  private int binarySearch(String target, int low, int high) {
+    if (low > high) {
+      return -1;
+    }
 
-    // TODO update to use binary search!
+    int mid = (low + high) / 2;
+    int cmp = target.compareTo(wordlist.get(mid));
+
+    if (cmp == 0) {
+      return mid;
+    } else if (cmp < 0) {
+      return binarySearch(target, low, mid - 1);
+    } else {
+      return binarySearch(target, mid + 1, high);
+    }
+  }
+
+  public int indexOf(String word) {
+    return binarySearch(word, 0, wordlist.size() - 1);
   }
 
   public boolean contains(String word) {
-    return wordlist.contains(word);
-
-    // TODO update to use binary search!
+    return indexOf(word) != -1;
   }
 
   public List<String> toList() {
