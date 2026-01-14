@@ -8,22 +8,13 @@ import java.util.Scanner;
 public class AnagramFinder {
 
   public static List<String> getAnagrams(String word, LookupList dict) {
-    List<String> anagrams = new ArrayList<>();
+    ArrayList<String> anagrams = new ArrayList<>();
     permutation("", word, dict, anagrams);
-    return anagrams;
+    System.out.println(anagrams);
+    return (List<String>) anagrams;
   }
 
-  private static void getAllAnagrams(String prefix, String word, List<String> anagramList) {
-    if (word.length() == 0)
-      anagramList.add(prefix);
-    for (int i = 0; i < word.length(); i++) {
-      char current = word.charAt(i);
-      String wordRemaining = word.substring(0, i) + word.substring(i + 1);
-      getAllAnagrams(prefix + current, wordRemaining, anagramList);
-    }
-  }
-
-  private static void permutation(String prefix, String remaining, LookupList dict, List<String> anagrams) {
+  private static void permutation(String prefix, String remaining, LookupList dict, ArrayList<String> anagrams) {
     if (remaining.length() == 0) {
       if (dict.contains(prefix) && !anagrams.contains(prefix)) {
         anagrams.add(prefix);

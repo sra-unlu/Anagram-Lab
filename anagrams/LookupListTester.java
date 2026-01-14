@@ -28,9 +28,9 @@ public class LookupListTester {
 
     System.out.println("List is correctly ordered? " + verifyOrdered(dict));
 
-    // System.out.print("Print entire list? (y/n) >>> ");
-    // if (input.nextLine().toLowerCase().contains("y"))
-    // dict.print(); // This could take a while...
+    System.out.print("Print entire list? (y/n) >>> ");
+    if (input.nextLine().toLowerCase().contains("y"))
+      dict.print(); // This could take a while...
 
     // Do word lookups.
     System.out.print("Search for a word (enter blank to stop) >>> ");
